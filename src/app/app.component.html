@@ -1,0 +1,56 @@
+<div class="cv-builder" id="content">
+    <!-- <h1 class="title">{{profileUserLinkedIn.first_name !== '' ? profileUserLinkedIn.first_name : ""}}</h1> -->
+    <h1 class="title">CV Builder</h1>
+    <div class="cv-builder-body">
+        <select name="select-page" id="select-page" class="select-page" [(ngModel)]= "pageGetProfile">
+            <option value="linkedin">Linkedin</option>
+            <option value="ggscholar">Google Scholar</option>
+            <option value="rg">RG</option>
+            <option value="orcid">ORCID</option>
+            <option value="crosref">Crossref</option>
+            <option value="ieee">IEEE</option>
+        </select>
+        <div class="link-cv">
+            <input type="text" class="link-cv-input" placeholder="Put your profile link here (Linkedin, Google Scholar, RG, ORCID, Crossref, IEEE)" [(ngModel)]= "linkProfileLinkedin" (change)="onChangeInputProfileLink()">
+            <button class="build-cv-btn" (click)="buildCVPDF()">Build</button>
+        </div>
+        <button class="download-cv-pdf-btn" (click)="downloadCVPDF()">Download PDF</button>
+    </div>
+
+    <div class="cv-info-pdf" id="cvInfo" #cvInfo>
+        <div class="left">
+            <img [src]="profilePicUrl" alt="" class="avatar-img">
+            <div class="full-name">{{fullName}}</div>
+            <div class="study-at">{{studyAt}}</div>
+            <div class="address">{{city}}, {{country}}</div>
+        </div>
+        <div class="right">
+            <div class="right-item">
+                <div class="title">Experience</div>
+                <div class="right-item-list experience-list" *ngFor="let experience of experiences">
+                    <div class="experience-item">
+                        {{experience.company}} <br />
+                        {{experience.title}}
+                    </div>
+                </div>
+            </div>
+            <div class="right-item">
+                <div class="title">Education</div>
+                <div class="right-item-list experience-list" *ngFor="let education of educations">
+                    <div class="experience-item">
+                        {{education.school}} <br />
+                        {{education.field_of_study}}
+                    </div>
+                </div>
+            </div>
+            <div class="right-item">
+              <div class="title">Skills</div>
+              <div class="right-item-list experience-list" *ngFor="let skill of skills">
+                  <div class="experience-item">
+                      <li>{{skill}}</li>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
